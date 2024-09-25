@@ -23,12 +23,12 @@ export const addABookByName = async (req:Request, res:Response): Promise<void> =
     try{
         const {bookName, userId} = req.body;
         if (!bookName || !userId) {
-            res.status(400).json({ error: "Username and password are required." });
+            res.status(400).json({ error: "No userId or book name" });
             return;
           }
         const book: Book | void = await addBook(userId, bookName);  
         if(!book){
-            res.status(400).json({ error: "Username and password are required." });
+            res.status(400).json({ error: "The book in question was not found" });
             return;
         }
         res.status(200).json({UserId: userId ,Book: book });      
